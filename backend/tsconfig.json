@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+      "module": "ES2020",
+      "esModuleInterop": true,
+      "target": "ES2020",
+      "noImplicitAny": true,
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "rootDir": "src",
+      "outDir": "dist",
+      "baseUrl": ".",
+      "paths": {
+          "*": [
+              "node_modules/*"
+          ]
+      }
+  },
+  "include": [
+      "src/**/*"
+  ]
+}
