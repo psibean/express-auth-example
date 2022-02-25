@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AuthProvider {
+  userId          String    @db.Uuid
+  name            String    @db.VarChar(32)
+  providerUserId  String    @db.VarChar(256)
+
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, name])
+  @@index([name, providerUserId])
+}
+
+model Registration {
+  email     String    @id
+  key       String    @unique           @db.VarChar(128)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    String?   @unique           @db.Uuid
+
+  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id              String      @id               @default(uuid())  @db.Uuid
+  email           String      @unique           @db.VarChar(512)
+  password        String?     @db.VarChar(256)
+  
+  providers       AuthProvider[]
+  registrationKey Registration?
+  passwordHistory PasswordHistory[]
+  passwordResets  PasswordReset[]
+}
+
+model PasswordHistory {
+  userId          String       @db.Uuid
+  password        String       @db.VarChar(256)
+  createdAt       DateTime     @default(now())
+
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade )
+
+  @@index([userId])
+  @@id([userId, password])
+}
+
+model PasswordReset {
+  id        String    @id               @default(uuid())  @db.Uuid
+  key       String    @unique           @db.VarChar(128)
+  userId    String    @db.Uuid
+  createdAt DateTime  @default(now())
+  used      Boolean   @default(false)
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Session {
+  id          String   @id
+  sid         String   @unique @default(uuid()) @db.Uuid
+  data        String
+  expiresAt   DateTime
+}
