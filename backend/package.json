@@ -18,11 +18,13 @@
   "dependencies": {
     "@prisma/client": "^3.10.0",
     "@types/express-session": "^1.17.4",
+    "argon2": "^0.28.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "csurf": "^1.11.0",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
+    "password-validator": "^5.2.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
