@@ -1,21 +1,13 @@
 import { jest } from '@jest/globals';
+import { PrismaClient } from '@prisma/client'
 import supertest from 'supertest';
+import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended'
 
 import app from '../server/app.js';
 
-import { MockContext, Context, createMockContext } from './context'
-
-let mockCtx: MockContext
-let ctx: Context
-
-beforeEach(() => {
-  mockCtx = createMockContext()
-  ctx = mockCtx as unknown as Context
-})
-
 const requester = supertest(app);
 
-it("Successfully loads rooot", async () => {
+it("Successfully loads root", async () => {
   const response = await requester.get('/');
   expect(response.status).toBe(200);
   expect(response.text).toBe("Hello World");
