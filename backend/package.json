@@ -11,7 +11,7 @@
     "start": "node -r dotenv/config ./dist/index.js",
     "dev": "npm run build && npm run start",
     "tsc": "tsc",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js ./src/tests --setupFiles dotenv/config"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js ./src/tests"
   },
   "author": "psibean",
   "license": "ISC",

@@ -9,6 +9,7 @@ const testPassword = 'T3s7P@s$w0rd'
 
 it('Generates appropriate signup key', async () => {
   const registration = await registrationController.signup(testEmail);
+  console.log("registration");
   expect(registration?.email).toBe(testEmail);
   const count = await db.registration.count();
   expect(count).toBe(1);

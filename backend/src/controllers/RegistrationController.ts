@@ -31,7 +31,7 @@ export default class RegistrationController {
       where: { email }
     });
 
-    if (existingRegistration === null || existingRegistration.userId === null) {
+    if (existingRegistration === undefined || existingRegistration?.userId === null) {
       const newRegKey = randomBytes(32).toString("hex");
       return db.registration.upsert({
         create: {
