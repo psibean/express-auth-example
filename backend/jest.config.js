@@ -146,7 +146,7 @@ export default {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: join(fileURLToPath(dirname(import.meta.url)), 'prisma', 'prisma-test-environment.js'),
+  testEnvironment: join(fileURLToPath(dirname(import.meta.url)), 'prisma', 'prisma-test-environment.ts'),
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},

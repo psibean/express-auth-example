@@ -4,6 +4,7 @@
   "description": "A express & passport auth and oauth2 example application",
   "exports": "./dist/index.js",
   "type": "module",
+  "module": "es2020",
   "scripts": {
     "clean": "rm -rf dist/",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
