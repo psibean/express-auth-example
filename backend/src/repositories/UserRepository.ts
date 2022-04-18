@@ -1,7 +1,7 @@
 import prisma from '../server/database.js';
 import { hash } from 'argon2';
 
-export default class UserController {
+export default class UserRepository {
   public async createUser(email: string, password: string) {
     const hashedPassword = await this.hashPassword(password);
     return prisma.user.create({
